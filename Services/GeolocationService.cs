@@ -2,6 +2,9 @@
 
 namespace ConsoleCS_WheatherReceiver.Services
 {
+    /// <summary>
+    /// Берём API с этого сайта https://openweathermap.org/api/geocoding-api
+    /// </summary>
     public class GeolocationService : IGeolocationService
     {
         private HttpClient _httpClient;

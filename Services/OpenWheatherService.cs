@@ -8,9 +8,11 @@ namespace ConsoleCS_WheatherReceiver.Services
     public class OpenWheatherService : IWheatherService
     {
         private HttpClient _httpClient;
-        public OpenWheatherService(HttpClient httpClient) 
+        private IGeolocationService _geolocationService;
+        public OpenWheatherService(HttpClient httpClient, IGeolocationService geolocationService) 
         {
             _httpClient = httpClient;
+            _geolocationService = geolocationService;
         }
         public async Task<IWheather> GetWheatherAsync(string city)
         {
