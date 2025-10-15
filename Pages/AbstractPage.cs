@@ -1,6 +1,6 @@
 ﻿namespace ConsoleCS_WheatherReceiver.Pages
 {
-    public interface IPage
+    public abstract class AbstractPage
     {
     }
 }
