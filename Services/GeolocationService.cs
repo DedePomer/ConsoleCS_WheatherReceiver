@@ -19,6 +19,7 @@ namespace ConsoleCS_WheatherReceiver.Services
             string url = $"http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit={1}&appid={HttpConstants.OPEN_WHEATHER_API_KEY}";
             var responce = await _httpClient
                 .GetAsync(url);
+
             if (responce.IsSuccessStatusCode)
             {
                 string json = await responce.Content.ReadAsStringAsync();

@@ -1,4 +1,7 @@
-﻿using ConsoleCS_WheatherReceiver.Model.Interfaces;
+﻿using ConsoleCS_WheatherReceiver.Model.DataType;
+using ConsoleCS_WheatherReceiver.Model.Interfaces;
+using ConsoleCS_WheatherReceiver.Utils.Constants;
+using ConsoleCS_WheatherReceiver.Utils.Parsers;
 
 namespace ConsoleCS_WheatherReceiver.Services
 {
@@ -16,7 +19,21 @@ namespace ConsoleCS_WheatherReceiver.Services
         }
         public async Task<IWheather> GetWheatherAsync(string city)
         {
-            throw new NotImplementedException();
+            Geolocation geolocation = await _geolocationService.GetGeolocationAsync(city);
+            string url = $"https://api.openweathermap.org/data/3.0/onecall?lat={geolocation.Latitude}&lon={geolocation.Longitude}&units=metric&exclude=current&appid={HttpConstants.OPEN_WHEATHER_API_KEY}";
+            
+            var responce = await _httpClient.GetAsync(url);
+
+            if (responce.IsSuccessStatusCode)
+            {
+                string json = await responce.Content.ReadAsStringAsync();
+                return JsonToClassicWheather.GetWheather(json, city);
+            }
+            else 
+            {
+                throw new Exception("Ошибка получения данных");
+            }
+
         }
     }
 }
