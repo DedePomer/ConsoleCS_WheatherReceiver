@@ -1,5 +1,6 @@
 ﻿using ConsoleCS_WheatherReceiver.Model.DataType;
 using ConsoleCS_WheatherReceiver.Utils.Constants;
+using ConsoleCS_WheatherReceiver.Utils.Parsers;
 
 namespace ConsoleCS_WheatherReceiver.Services
 {
@@ -20,7 +21,8 @@ namespace ConsoleCS_WheatherReceiver.Services
                 .GetAsync(url);
             if (responce.IsSuccessStatusCode)
             {
-
+                string json = await responce.Content.ReadAsStringAsync();
+                return JsonToGeolocation.GetGeolocation(json);
             }
             else 
             {
