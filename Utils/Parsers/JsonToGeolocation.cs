@@ -12,8 +12,8 @@ namespace ConsoleCS_WheatherReceiver.Utils.Parsers
             using JsonDocument doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
 
-            string latitude = root.GetProperty("lat").ToString();
-            string longitude = root.GetProperty("lon").ToString();
+            string latitude = root[0].GetProperty("lat").ToString();
+            string longitude = root[0].GetProperty("lon").ToString();
 
             return geolocation = new Geolocation() 
             {

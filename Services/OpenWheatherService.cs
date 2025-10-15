@@ -20,8 +20,8 @@ namespace ConsoleCS_WheatherReceiver.Services
         public async Task<IWheather> GetWheatherAsync(string city)
         {
             Geolocation geolocation = await _geolocationService.GetGeolocationAsync(city);
-            string url = $"https://api.openweathermap.org/data/3.0/onecall?lat={geolocation.Latitude}&lon={geolocation.Longitude}&units=metric&exclude=current&appid={HttpConstants.OPEN_WHEATHER_API_KEY}";
-            
+            string url = $"http://api.openweathermap.org/data/3.0/onecall?lat={geolocation.Latitude}&lon={geolocation.Longitude}&units=metric&exclude=current&appid={HttpConstants.OPEN_WHEATHER_API_KEY}";
+
             var responce = await _httpClient.GetAsync(url);
 
             if (responce.IsSuccessStatusCode)

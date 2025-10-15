@@ -10,7 +10,7 @@ namespace ConsoleCS_WheatherReceiver
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var builder = Host.CreateApplicationBuilder(args);
             builder.Configuration.AddJsonFile("Utils\\appsettings.json");
@@ -29,7 +29,9 @@ namespace ConsoleCS_WheatherReceiver
             AddServices(builder.Services);
 
             var app = builder.Build();
-            app.Run();
+            var mainPage = app.Services.GetRequiredService<ClassicPage>();
+
+            await mainPage.Open();
         }
 
         private static void AddServices(IServiceCollection services)
