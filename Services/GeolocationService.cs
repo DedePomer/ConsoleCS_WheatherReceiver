@@ -1,4 +1,5 @@
 ﻿using ConsoleCS_WheatherReceiver.Model.DataType;
+using ConsoleCS_WheatherReceiver.Utils.Constants;
 
 namespace ConsoleCS_WheatherReceiver.Services
 {
@@ -12,9 +13,19 @@ namespace ConsoleCS_WheatherReceiver.Services
         {
             _httpClient = httpClient;
         }
-        public Task<Geolocation> GetGeolocationAsync(string cityName)
+        public async Task<Geolocation> GetGeolocationAsync(string cityName)
         {
-            throw new NotImplementedException();
+            string url = $"http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit={1}&appid={HttpConstants.OPEN_WHEATHER_API_KEY}";
+            var responce = await _httpClient
+                .GetAsync(url);
+            if (responce.IsSuccessStatusCode)
+            {
+
+            }
+            else 
+            {
+                throw new Exception("Ошибка получения данных");
+            }
         }
     }
 }
