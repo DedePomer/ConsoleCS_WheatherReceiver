@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ConsoleCS_WheatherReceiver.Pages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -31,8 +32,8 @@ namespace ConsoleCS_WheatherReceiver
         }
 
         private static void AddServices(IServiceCollection services)
-        { 
-        
+        {
+            services.AddTransient<ClassicPage>();
         }
     }
 }

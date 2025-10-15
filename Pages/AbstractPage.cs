@@ -2,5 +2,10 @@
 {
     public abstract class AbstractPage
     {
+
+        protected AbstractPage()
+        { 
+        
+        }
     }
 }
