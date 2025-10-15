@@ -1,4 +1,5 @@
 ﻿using ConsoleCS_WheatherReceiver.Pages;
+using ConsoleCS_WheatherReceiver.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,6 +35,9 @@ namespace ConsoleCS_WheatherReceiver
         private static void AddServices(IServiceCollection services)
         {
             services.AddTransient<ClassicPage>();
+
+            services.AddHttpClient<IWheatherService, OpenWheatherService>();
+            services.AddHttpClient<IGeolocationService, GeolocationService>();
         }
     }
 }
